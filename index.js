@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const { connect } = require("./db/connect");
+const connect = require("./db/connect");
 const { CreateError } = require("./utils/error");
 require("dotenv").config();
 const hotelRoutes = require("./routes/hotel.routes");
@@ -52,7 +52,7 @@ mongoose.connection.on("connected", () => {
   console.log("mongodb connected".bgBlue);
 });
 
+connect();
 app.listen(PORT, () => {
-  connect();
   console.log(`server running on ${PORT}`);
 });

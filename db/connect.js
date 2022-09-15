@@ -1,6 +1,6 @@
 const colors = require("colors");
 const mongoose = require("mongoose");
-exports.connect = async () => {
+const connect = async () => {
   try {
     await mongoose.connect(
       "mongodb+srv://sadik:sadik123@cluster0.ljrbn8h.mongodb.net/bookmeup?retryWrites=true&w=majority"
@@ -10,3 +10,4 @@ exports.connect = async () => {
     throw error;
   }
 };
+module.exports = connect;
