@@ -18,7 +18,6 @@ const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res, next) => {
   res.send("I am bookmeup server");
-  return next(CreateError(404, "user m"));
 });
 
 // * global error handler
