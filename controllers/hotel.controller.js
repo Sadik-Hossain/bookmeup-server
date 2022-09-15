@@ -1,7 +1,7 @@
 const HotelModel = require("../models/hotel.model");
 
 const getHotels = async (req, res) => {
-  const result = await HotelModel.find();
+  const result = await HotelModel.find({});
   res.send(result);
 };
 const postHotels = async (req, res, next) => {
