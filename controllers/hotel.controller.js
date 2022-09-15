@@ -1,7 +1,8 @@
 const HotelModel = require("../models/hotel.model");
 
 const getHotels = async (req, res) => {
-  res.send("hello from getall controller");
+  const result = await HotelModel.find();
+  res.send(result);
 };
 const postHotels = async (req, res, next) => {
   const body = req.body;
