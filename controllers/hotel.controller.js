@@ -2,29 +2,50 @@ const { count } = require("../models/hotel.model");
 const HotelModel = require("../models/hotel.model");
 const RoomModel = require("../models/room.model");
 
-// const find = async (req, res) => {
-//   console.log(req.query);
-//   const { min, max, ...other } = req.query;
-
-//   const result = await HotelModel.find({
-//     ...other,
-//     cheapestPrice: { $gt: min || 1, $lt: max || 999 },
-//   });
-//   console.log(result);
-//   res.send(result);
-// };
+const find = async (req, res) => {
+  console.log(req.query);
+  const { min, max, country } = req.query;
+  if (country !== "undefined") {
+    const result = await HotelModel.find({
+      country: country,
+      cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+    });
+    console.log("hello if", result);
+    res.send(result);
+  } else {
+    const result = await HotelModel.find({
+      cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+    });
+    console.log("hello else", result);
+    res.send(result);
+  }
+};
 
 const getHotels = async (req, res) => {
   console.log(req.query);
-  const { min, max, ...others } = req.query;
+  const { min, max, country } = req.query;
 
   try {
-    const result = await HotelModel.find({
-      ...others,
-      cheapestPrice: { $gt: min || 1, $lt: max || 999 },
-    });
-    console.log(`${result}`.bgRed);
-    res.send(result);
+    if (country !== "undefined" && country !== "") {
+      const result = await HotelModel.find({
+        country: country,
+        cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+      });
+      console.log("hello if", result);
+      res.send(result);
+    } else {
+      const result = await HotelModel.find({
+        cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+      });
+      console.log("hello else", result);
+      res.send(result);
+    }
+    // const result = await HotelModel.find({
+    //   ...others,
+    //   cheapestPrice: { $gt: min || 1, $lt: max || 999 },
+    // });
+    // console.log(`${result}`.bgRed);
+    // res.send(result);
   } catch (error) {
     res.send(error);
   }
@@ -63,4 +84,5 @@ module.exports = {
   putHotels,
   deleteHotels,
   getHotelById,
+  find,
 };

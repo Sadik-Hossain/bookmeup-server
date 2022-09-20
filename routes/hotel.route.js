@@ -5,8 +5,10 @@ const {
   putHotels,
   deleteHotels,
   getHotelById,
+  find,
 } = require("../controllers/hotel.controller.js");
 const router = Router();
+// router.get("/", find);
 router.get("/", getHotels);
 router.get("/:id", getHotelById);
 
