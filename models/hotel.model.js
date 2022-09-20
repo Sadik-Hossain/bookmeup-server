@@ -4,13 +4,40 @@ const HotelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  location: {
-    country: {
-      type: String,
-    },
-    city: {
-      type: String,
-    },
+
+  country: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  photos: {
+    type: [String],
+  },
+  desc: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    type: Number,
+    min: 0,
+    max: 5,
+  },
+
+  rooms: {
+    type: [Object],
+  },
+  cheapestPrice: {
+    type: Number,
+    required: true,
+  },
+  featured: {
+    type: Boolean,
+    default: false,
   },
 });
 

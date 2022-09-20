@@ -4,7 +4,9 @@ const cors = require("cors");
 const connect = require("./db/connect");
 const { CreateError } = require("./utils/error");
 require("dotenv").config();
-const hotelRoutes = require("./routes/hotel.routes");
+const hotelRoutes = require("./routes/hotel.route");
+const roomRoutes = require("./routes/room.route");
+const HotelModel = require("./models/hotel.model");
 const app = express();
 
 //* middlewares
@@ -13,6 +15,7 @@ app.use(express.json());
 
 //* routes
 app.use("/api/hotel", hotelRoutes);
+app.use("/api/room", roomRoutes);
 
 const PORT = process.env.PORT || 5000;
 
