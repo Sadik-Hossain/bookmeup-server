@@ -26,16 +26,12 @@ const getHotels = async (req, res) => {
   const { min, max, country } = req.query;
 
   try {
-    if (!country) {
-      const result = await HotelModel.find({});
-      console.log("hello if");
-      res.send(result);
-    } else if (country !== "undefined" && country !== "") {
+    if (country && country !== "undefined" && country !== "") {
       const result = await HotelModel.find({
         country: country,
         cheapestPrice: { $gt: min || 1, $lt: max || 999 },
       });
-      console.log("hello else-if", result);
+      console.log("hello if", result);
       res.send(result);
     } else {
       const result = await HotelModel.find({
